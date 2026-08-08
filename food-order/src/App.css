@@ -303,9 +303,17 @@ body {
 
 .login-title {
   text-align: center;
-  margin: 0 0 10px 0;
+  margin: 0 0 6px 0;
   color: #e6f0ff;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.login-subtitle {
+  text-align: center;
+  margin: 0 0 10px 0;
+  color: #c7d8f7;
+  font-size: 13px;
 }
 
 .login-form {
