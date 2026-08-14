@@ -1,62 +1,36 @@
-import { useState } from "react";
-import AppButton from "./components/AppButton";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AppBar, Toolbar, Button, Container, Box } from "@mui/material";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ConditionalDemo from "./pages/ConditionalDemo";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <Grid container>
-      {/* MANUAL */}
-      <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-        <button
-          onClick={() => setCount((count) => count + 1)}
-          style={{
-            width: "100%",
-            backgroundColor: "#1976d2",
-            borderRadius: "5px",
-            border: "1px solid #FFF",
-            color: "#FFF",
-            padding: "10px",
-          }}
-        >
-          LOGIN
-        </button>
-      </Grid>
+    <BrowserRouter>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+            <Button color="inherit" component={Link} to="/">
+              Home
+            </Button>
+            <Button color="inherit" component={Link} to="/about">
+              About
+            </Button>
+            <Button color="inherit" component={Link} to="/conditional">
+              Conditional
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
 
-      {/* MENGGUNAKAN MUI */}
-      <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-        <Button
-          variant="text"
-          color="primary"
-          onClick={() => setCount((count) => count + 1)}
-          sx={{
-            width: "100%",
-            backgroundColor: { xs: "#FF12", sm: "#FF1213", md: "#FF12AD" },
-            borderRadius: "5px",
-            boxShadow: "none",
-          }}
-        >
-          MUI
-        </Button>
-      </Grid>
-
-      {/* MENGGUNAKAN CUSTOM COMPONENT */}
-      <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-        <AppButton onClick={() => setCount((count) => count + 1)}>
-          Tambah 1
-        </AppButton>
-        <AppButton onClick={() => setCount((count) => count + 2)}>
-          Tambah 2
-        </AppButton>
-      </Grid>
-
-      {/* HASIL */}
-      <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-        {count}
-      </Grid>
-    </Grid>
+      <Container maxWidth="xl" sx={{ mt: 2 }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/conditional" element={<ConditionalDemo />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 

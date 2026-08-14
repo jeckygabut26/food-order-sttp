@@ -1,21 +1,26 @@
 const Register = () => {
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      background: "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
-      fontFamily: "Arial, sans-serif"
-    }}>
-      <div style={{
-        width: "100%",
-        maxWidth: "420px",
-        padding: "32px",
-        borderRadius: "16px",
-        background: "white",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
-      }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
+        fontFamily: "Arial, sans-serif",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "420px",
+          padding: "32px",
+          borderRadius: "16px",
+          background: "white",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+        }}
+      >
         <h2 style={{ marginBottom: "8px", color: "#1e3a8a", textAlign: "center" }}>
           Register
         </h2>
@@ -35,7 +40,7 @@ const Register = () => {
             marginBottom: "12px",
             border: "1px solid #cbd5e1",
             borderRadius: "8px",
-            boxSizing: "border-box"
+            boxSizing: "border-box",
           }}
         />
 
@@ -51,7 +56,7 @@ const Register = () => {
             marginBottom: "12px",
             border: "1px solid #cbd5e1",
             borderRadius: "8px",
-            boxSizing: "border-box"
+            boxSizing: "border-box",
           }}
         />
 
@@ -67,7 +72,7 @@ const Register = () => {
             marginBottom: "12px",
             border: "1px solid #cbd5e1",
             borderRadius: "8px",
-            boxSizing: "border-box"
+            boxSizing: "border-box",
           }}
         />
 
@@ -83,7 +88,7 @@ const Register = () => {
             marginBottom: "16px",
             border: "1px solid #cbd5e1",
             borderRadius: "8px",
-            boxSizing: "border-box"
+            boxSizing: "border-box",
           }}
         />
 
@@ -96,7 +101,7 @@ const Register = () => {
             border: "none",
             borderRadius: "8px",
             cursor: "pointer",
-            fontWeight: "bold"
+            fontWeight: "bold",
           }}
         >
           Register
