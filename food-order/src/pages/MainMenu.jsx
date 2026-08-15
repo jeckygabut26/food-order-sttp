@@ -1,4 +1,11 @@
-const MainMenu = () => {
+const MainMenu = ({ onNavigate }) => {
+  const menuButtons = [
+    { label: "Home", page: "home" },
+    { label: "Menu", page: "menu" },
+    { label: "Login", page: "login" },
+    { label: "Register", page: "register" },
+  ];
+
   return (
     <div
       style={{
@@ -37,65 +44,25 @@ const MainMenu = () => {
             gap: "20px",
           }}
         >
-          <button
-            style={{
-              padding: "20px 16px",
-              borderRadius: "14px",
-              border: "none",
-              background: "#ffffff",
-              color: "#1e3a8a",
-              fontWeight: "bold",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-          >
-            Home
-          </button>
-
-          <button
-            style={{
-              padding: "20px 16px",
-              borderRadius: "14px",
-              border: "none",
-              background: "#dbeafe",
-              color: "#1e3a8a",
-              fontWeight: "bold",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-          >
-            Profile
-          </button>
-
-          <button
-            style={{
-              padding: "20px 16px",
-              borderRadius: "14px",
-              border: "none",
-              background: "#bfdbfe",
-              color: "#1e3a8a",
-              fontWeight: "bold",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-          >
-            Orders
-          </button>
-
-          <button
-            style={{
-              padding: "20px 16px",
-              borderRadius: "14px",
-              border: "none",
-              background: "#93c5fd",
-              color: "#0f172a",
-              fontWeight: "bold",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-          >
-            Settings
-          </button>
+          {menuButtons.map(({ label, page }) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => onNavigate(page)}
+              style={{
+                padding: "20px 16px",
+                borderRadius: "14px",
+                border: "none",
+                background: page === "home" ? "#ffffff" : "#dbeafe",
+                color: "#1e3a8a",
+                fontWeight: "bold",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
