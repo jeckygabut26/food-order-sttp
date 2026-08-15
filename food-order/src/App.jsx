@@ -1,7 +1,12 @@
-import Register from "./pages/register";
+import { AuthProvider } from "./provider/AuthProvider";
+import FoodMenu from "./pages/FoodMenu";
 
 function App() {
-  return <Register />;
+  return (
+    <AuthProvider>
+      <FoodMenu />
+    </AuthProvider>
+  );
 }
 
 export default App;
