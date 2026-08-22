@@ -131,9 +131,11 @@ const FoodMenu = ({ onNavigate }) => {
               width: "100%",
               padding: "12px 14px",
               borderRadius: "10px",
-              border: "1px solid #cbd5e1",
+              border: "1px solid #000000",
               background: "white",
+              color: "#000000",
               boxSizing: "border-box",
+              fontWeight: 600,
             }}
           >
             {categories.map((category) => (
@@ -155,9 +157,11 @@ const FoodMenu = ({ onNavigate }) => {
               width: "100%",
               padding: "12px 14px",
               borderRadius: "10px",
-              border: "1px solid #cbd5e1",
+              border: "1px solid #000000",
               background: "white",
+              color: "#000000",
               boxSizing: "border-box",
+              fontWeight: 600,
             }}
           >
             {sortOptions.map((option) => (
