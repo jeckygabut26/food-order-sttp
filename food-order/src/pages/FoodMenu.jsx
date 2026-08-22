@@ -102,7 +102,7 @@ const FoodMenu = ({ onNavigate }) => {
         }}
       >
         <div style={{ flex: "1 1 240px", minWidth: "220px" }}>
-          <label style={{ display: "block", marginBottom: "8px", color: "#334155", fontWeight: 700 }}>
+          <label style={{ display: "block", marginBottom: "8px", color: "#000000", fontWeight: 700 }}>
             Search food
           </label>
           <input
@@ -121,7 +121,7 @@ const FoodMenu = ({ onNavigate }) => {
         </div>
 
         <div style={{ flex: "1 1 180px", minWidth: "160px" }}>
-          <label style={{ display: "block", marginBottom: "8px", color: "#334155", fontWeight: 700 }}>
+          <label style={{ display: "block", marginBottom: "8px", color: "#000000", fontWeight: 700 }}>
             Semua kategori
           </label>
           <select
@@ -145,7 +145,7 @@ const FoodMenu = ({ onNavigate }) => {
         </div>
 
         <div style={{ flex: "1 1 180px", minWidth: "160px" }}>
-          <label style={{ display: "block", marginBottom: "8px", color: "#334155", fontWeight: 700 }}>
+          <label style={{ display: "block", marginBottom: "8px", color: "#000000", fontWeight: 700 }}>
             Short by
           </label>
           <select
