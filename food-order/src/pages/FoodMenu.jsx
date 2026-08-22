@@ -8,6 +8,7 @@ const FoodMenu = ({ onNavigate }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
   const [sortBy, setSortBy] = useState("nama");
+  const [lastOrdered, setLastOrdered] = useState("");
 
   const navItems = isAuthenticated
     ? [
@@ -42,6 +43,15 @@ const FoodMenu = ({ onNavigate }) => {
       }),
     [searchTerm, selectedCategory, sortBy]
   );
+
+  const handleOrder = (food) => {
+    if (!isAuthenticated) {
+      onNavigate("login");
+      return;
+    }
+
+    setLastOrdered(`${food.name} berhasil dipesan.`);
+  };
 
   return (
     <AppLayout
@@ -159,10 +169,25 @@ const FoodMenu = ({ onNavigate }) => {
         </div>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px", gap: "12px", flexWrap: "wrap" }}>
         <p style={{ margin: 0, color: "#475569", fontWeight: 600 }}>
           Menampilkan {filteredFoods.length} item
         </p>
+        {lastOrdered && (
+          <p
+            style={{
+              margin: 0,
+              color: "#15803d",
+              background: "#dcfce7",
+              border: "1px solid #86efac",
+              padding: "8px 12px",
+              borderRadius: "999px",
+              fontWeight: 700,
+            }}
+          >
+            {lastOrdered}
+          </p>
+        )}
       </div>
 
       {filteredFoods.length === 0 ? (
@@ -236,6 +261,8 @@ const FoodMenu = ({ onNavigate }) => {
                 </p>
 
                 <button
+                  type="button"
+                  onClick={() => handleOrder(food)}
                   style={{
                     width: "100%",
                     padding: "12px",
