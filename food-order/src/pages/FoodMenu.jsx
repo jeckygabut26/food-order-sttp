@@ -1,39 +1,28 @@
+import { useMemo, useState } from "react";
 import AppLayout from "../components/AppLayout";
-
-const foods = [
-  {
-    name: "Nasi Goreng",
-    price: "Rp 25.000",
-    desc: "Nasi goreng spesial dengan telur dan ayam panggang.",
-    color: "#fef3c7",
-  },
-  {
-    name: "Mie Ayam",
-    price: "Rp 20.000",
-    desc: "Mie dengan ayam, pangsit, dan sawi segar.",
-    color: "#dbeafe",
-  },
-  {
-    name: "Bakso",
-    price: "Rp 22.000",
-    desc: "Bakso kenyal dengan kuah gurih dan bawang goreng.",
-    color: "#dcfce7",
-  },
-  {
-    name: "Sate Ayam",
-    price: "Rp 30.000",
-    desc: "Sate ayam bumbu khas dengan lontong dan sambal.",
-    color: "#fee2e2",
-  },
-];
+import { categories, getFilteredFoods } from "./foodMenuData";
 
 const FoodMenu = ({ onNavigate }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
+  const [sortBy, setSortBy] = useState("nama");
+
   const navItems = [
     { label: "Home", page: "home" },
     { label: "Menu", page: "menu" },
     { label: "Login", page: "login" },
     { label: "Register", page: "register" },
   ];
+
+  const filteredFoods = useMemo(
+    () =>
+      getFilteredFoods({
+        searchTerm,
+        category: selectedCategory,
+        sortBy,
+      }),
+    [searchTerm, selectedCategory, sortBy]
+  );
 
   return (
     <AppLayout
@@ -71,72 +60,179 @@ const FoodMenu = ({ onNavigate }) => {
 
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: "20px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "16px",
+          marginBottom: "26px",
+          alignItems: "center",
+          justifyContent: "space-between",
+          background: "#f8fafc",
+          border: "1px solid #e2e8f0",
+          borderRadius: "16px",
+          padding: "16px",
         }}
       >
-        {foods.map((food) => (
-          <div
-            key={food.name}
+        <div style={{ flex: "1 1 240px", minWidth: "220px" }}>
+          <label style={{ display: "block", marginBottom: "8px", color: "#334155", fontWeight: 700 }}>
+            Search food
+          </label>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            placeholder="Cari makanan atau minuman"
             style={{
+              width: "100%",
+              padding: "12px 14px",
+              borderRadius: "10px",
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </div>
+
+        <div style={{ flex: "1 1 180px", minWidth: "160px" }}>
+          <label style={{ display: "block", marginBottom: "8px", color: "#334155", fontWeight: 700 }}>
+            Semua kategori
+          </label>
+          <select
+            value={selectedCategory}
+            onChange={(event) => setSelectedCategory(event.target.value)}
+            style={{
+              width: "100%",
+              padding: "12px 14px",
+              borderRadius: "10px",
+              border: "1px solid #cbd5e1",
               background: "white",
-              borderRadius: "18px",
-              overflow: "hidden",
-              boxShadow: "0 10px 25px rgba(15, 23, 42, 0.08)",
-              border: "1px solid #e2e8f0",
+              boxSizing: "border-box",
             }}
           >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div style={{ flex: "1 1 180px", minWidth: "160px" }}>
+          <label style={{ display: "block", marginBottom: "8px", color: "#334155", fontWeight: 700 }}>
+            Short by
+          </label>
+          <select
+            value={sortBy}
+            onChange={(event) => setSortBy(event.target.value)}
+            style={{
+              width: "100%",
+              padding: "12px 14px",
+              borderRadius: "10px",
+              border: "1px solid #cbd5e1",
+              background: "white",
+              boxSizing: "border-box",
+            }}
+          >
+            <option value="nama">Nama</option>
+            <option value="harga-terendah">Harga: Terendah</option>
+            <option value="harga-termahal">Harga: Tertinggi</option>
+          </select>
+        </div>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
+        <p style={{ margin: 0, color: "#475569", fontWeight: 600 }}>
+          Menampilkan {filteredFoods.length} item
+        </p>
+      </div>
+
+      {filteredFoods.length === 0 ? (
+        <div
+          style={{
+            textAlign: "center",
+            padding: "32px 20px",
+            background: "#fff",
+            borderRadius: "16px",
+            border: "1px dashed #cbd5e1",
+            color: "#475569",
+          }}
+        >
+          Tidak ada menu yang sesuai dengan pencarian Anda.
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {filteredFoods.map((food) => (
             <div
+              key={food.id}
               style={{
-                background: food.color,
-                height: "120px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "40px",
+                background: "white",
+                borderRadius: "18px",
+                overflow: "hidden",
+                boxShadow: "0 10px 25px rgba(15, 23, 42, 0.08)",
+                border: "1px solid #e2e8f0",
               }}
             >
-              🍽️
-            </div>
-
-            <div style={{ padding: "18px" }}>
               <div
                 style={{
+                  background: food.color,
+                  height: "120px",
                   display: "flex",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                   alignItems: "center",
-                  marginBottom: "10px",
+                  fontSize: "40px",
                 }}
               >
-                <h3 style={{ margin: 0, color: "#0f172a", fontSize: "22px" }}>
-                  {food.name}
-                </h3>
-                <span style={{ color: "#f97316", fontWeight: "bold" }}>{food.price}</span>
+                {food.category === "Minuman" ? "🥤" : "🍽️"}
               </div>
 
-              <p style={{ margin: "0 0 16px", color: "#475569", lineHeight: 1.6 }}>
-                {food.desc}
-              </p>
+              <div style={{ padding: "18px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <h3 style={{ margin: 0, color: "#0f172a", fontSize: "22px" }}>
+                    {food.name}
+                  </h3>
+                  <span style={{ color: "#f97316", fontWeight: "bold" }}>
+                    Rp {food.price.toLocaleString("id-ID")}
+                  </span>
+                </div>
 
-              <button
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  borderRadius: "10px",
-                  border: "none",
-                  background: "#2563eb",
-                  color: "white",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                }}
-              >
-                Pesan Sekarang
-              </button>
+                <p style={{ margin: "0 0 10px", color: "#64748b", fontSize: "12px", fontWeight: 700 }}>
+                  {food.category}
+                </p>
+
+                <p style={{ margin: "0 0 16px", color: "#475569", lineHeight: 1.6 }}>
+                  {food.desc}
+                </p>
+
+                <button
+                  style={{
+                    width: "100%",
+                    padding: "12px",
+                    borderRadius: "10px",
+                    border: "none",
+                    background: "#2563eb",
+                    color: "white",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Pesan Sekarang
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </AppLayout>
   );
 };
