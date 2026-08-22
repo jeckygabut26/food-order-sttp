@@ -47,9 +47,69 @@ export const foods = [
     category: "Minuman",
     color: "#fef9c3",
   },
+  {
+    id: 7,
+    name: "Ayam Geprek",
+    price: 28000,
+    desc: "Ayam goreng renyah dengan sambal geprek pedas dan nasi hangat.",
+    category: "Makanan Utama",
+    color: "#fed7aa",
+  },
+  {
+    id: 8,
+    name: "Pecel Lele",
+    price: 26000,
+    desc: "Lele goreng renyah dengan sambal tomat dan lalapan segar.",
+    category: "Makanan Utama",
+    color: "#bbf7d0",
+  },
+  {
+    id: 9,
+    name: "Cappuccino",
+    price: 18000,
+    desc: "Kopi kental dengan busa lembut cocok untuk santai.",
+    category: "Minuman",
+    color: "#e9d5ff",
+  },
+  {
+    id: 10,
+    name: "Lemon Tea",
+    price: 12000,
+    desc: "Minuman teh dengan rasa lemon segar dan menyegarkan.",
+    category: "Minuman",
+    color: "#d1fae5",
+  },
+  {
+    id: 11,
+    name: "Kentang Goreng",
+    price: 15000,
+    desc: "Kentang goreng renyah dengan saus sambal dan mayones.",
+    category: "Snack",
+    color: "#fde68a",
+  },
+  {
+    id: 12,
+    name: "Brownis Cokelat",
+    price: 14000,
+    desc: "Brownis lembut dan manis dengan rasa cokelat yang nikmat.",
+    category: "Dessert",
+    color: "#f5d0fe",
+  },
 ];
 
-export const categories = ["Semua Kategori", "Makanan Utama", "Minuman"];
+export const categories = [
+  "Semua Kategori",
+  "Makanan Utama",
+  "Minuman",
+  "Snack",
+  "Dessert",
+];
+
+export const sortOptions = [
+  { value: "nama", label: "Nama A-Z" },
+  { value: "harga-terendah", label: "Harga: Terendah" },
+  { value: "harga-termahal", label: "Harga: Tertinggi" },
+];
 
 export const getFilteredFoods = ({ searchTerm = "", category = "Semua Kategori", sortBy = "nama" }) => {
   const normalizedSearch = searchTerm.trim().toLowerCase();

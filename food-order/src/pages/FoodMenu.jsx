@@ -1,18 +1,37 @@
 import { useMemo, useState } from "react";
 import AppLayout from "../components/AppLayout";
-import { categories, getFilteredFoods } from "./foodMenuData";
+import { useAuth } from "../components/hooks/useAuth";
+import { categories, getFilteredFoods, sortOptions } from "./foodMenuData";
 
 const FoodMenu = ({ onNavigate }) => {
+  const { isAuthenticated, logout, user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
   const [sortBy, setSortBy] = useState("nama");
 
-  const navItems = [
-    { label: "Home", page: "home" },
-    { label: "Menu", page: "menu" },
-    { label: "Login", page: "login" },
-    { label: "Register", page: "register" },
-  ];
+  const navItems = isAuthenticated
+    ? [
+        { label: "Home", page: "home" },
+        { label: "Menu", page: "menu" },
+        { label: `Profil (${user?.username || "User"})`, page: "profile" },
+        { label: "Logout", page: "logout" },
+      ]
+    : [
+        { label: "Home", page: "home" },
+        { label: "Menu", page: "menu" },
+        { label: "Login", page: "login" },
+        { label: "Register", page: "register" },
+      ];
+
+  const handleNavAction = (page) => {
+    if (page === "logout") {
+      logout();
+      onNavigate("home");
+      return;
+    }
+
+    onNavigate(page);
+  };
 
   const filteredFoods = useMemo(
     () =>
@@ -31,11 +50,11 @@ const FoodMenu = ({ onNavigate }) => {
         <button
           key={label}
           type="button"
-          onClick={() => onNavigate(page)}
+          onClick={() => handleNavAction(page)}
           style={{
             border: "none",
-            background: page === "menu" ? "#2563eb" : "#e0e7ff",
-            color: page === "menu" ? "white" : "#1e3a8a",
+            background: page === "menu" || page === "logout" ? "#2563eb" : "#e0e7ff",
+            color: page === "menu" || page === "logout" ? "white" : "#1e3a8a",
             padding: "10px 14px",
             borderRadius: "10px",
             cursor: "pointer",
@@ -131,9 +150,11 @@ const FoodMenu = ({ onNavigate }) => {
               boxSizing: "border-box",
             }}
           >
-            <option value="nama">Nama</option>
-            <option value="harga-terendah">Harga: Terendah</option>
-            <option value="harga-termahal">Harga: Tertinggi</option>
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>
