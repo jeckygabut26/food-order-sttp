@@ -66,8 +66,12 @@ const AppLayout = ({ title, children, actions }) => {
                 borderRadius: "10px",
                 cursor: "pointer",
                 fontWeight: "700",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
               }}
             >
+              <span aria-hidden="true">{theme === "light" ? "🌙" : "☀️"}</span>
               {theme === "light" ? "Dark" : "Light"}
             </button>
           </div>

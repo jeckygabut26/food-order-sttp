@@ -12,16 +12,16 @@ const FoodMenu = ({ onNavigate }) => {
 
   const navItems = isAuthenticated
     ? [
-        { label: "Home", page: "home" },
-        { label: "Menu", page: "menu" },
-        { label: `Profil (${user?.username || "User"})`, page: "profile" },
-        { label: "Logout", page: "logout" },
+        { label: "🏠 Home", page: "home" },
+        { label: "📋 Menu", page: "menu" },
+        { label: `👤 Profil (${user?.username || "User"})`, page: "profile" },
+        { label: "🚪 Logout", page: "logout" },
       ]
     : [
-        { label: "Home", page: "home" },
-        { label: "Menu", page: "menu" },
-        { label: "Login", page: "login" },
-        { label: "Register", page: "register" },
+        { label: "🏠 Home", page: "home" },
+        { label: "📋 Menu", page: "menu" },
+        { label: "🔐 Login", page: "login" },
+        { label: "📝 Register", page: "register" },
       ];
 
   const handleNavAction = (page) => {
@@ -69,9 +69,13 @@ const FoodMenu = ({ onNavigate }) => {
             borderRadius: "10px",
             cursor: "pointer",
             fontWeight: "700",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          {label}
+          <span aria-hidden="true">{label.split(" ")[0]}</span>
+          <span>{label.replace(/^[^\s]+\s/, "")}</span>
         </button>
       ))}
     >
