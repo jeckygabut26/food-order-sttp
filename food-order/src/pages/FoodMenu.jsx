@@ -261,64 +261,71 @@ const FoodMenu = ({ onNavigate }) => {
           </div>
 
           <div style={{ display: "grid", gap: "12px" }}>
-            {cart.map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "12px",
-                  background: "white",
-                  borderRadius: "12px",
-                  padding: "10px 12px",
-                  border: "1px solid #fed7aa",
-                }}
-              >
-                <div>
-                  <strong style={{ display: "block" }}>{item.name}</strong>
-                  <span style={{ color: "#64748b", fontSize: "14px" }}>
-                    Rp {item.price.toLocaleString("id-ID")}
-                  </span>
-                </div>
+            {cart.map((item) => {
+              const subtotal = item.price * item.qty;
 
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <button
-                    type="button"
-                    onClick={() => updateQty(item.id, -1)}
-                    style={{
-                      width: "28px",
-                      height: "28px",
-                      borderRadius: "8px",
-                      border: "none",
-                      background: "#fca5a5",
-                      color: "#7f1d1d",
-                      fontWeight: "bold",
-                      cursor: "pointer",
-                    }}
-                  >
-                    −
-                  </button>
-                  <span style={{ minWidth: "20px", textAlign: "center", fontWeight: 700 }}>{item.qty}</span>
-                  <button
-                    type="button"
-                    onClick={() => updateQty(item.id, 1)}
-                    style={{
-                      width: "28px",
-                      height: "28px",
-                      borderRadius: "8px",
-                      border: "none",
-                      background: "#86efac",
-                      color: "#166534",
-                      fontWeight: "bold",
-                      cursor: "pointer",
-                    }}
-                  >
-                    +
-                  </button>
+              return (
+                <div
+                  key={item.id}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: "12px",
+                    background: "white",
+                    borderRadius: "12px",
+                    padding: "10px 12px",
+                    border: "1px solid #fed7aa",
+                  }}
+                >
+                  <div>
+                    <strong style={{ display: "block" }}>{item.name}</strong>
+                    <span style={{ color: "#64748b", fontSize: "14px" }}>
+                      {item.qty} item × Rp {item.price.toLocaleString("id-ID")}
+                    </span>
+                    <div style={{ color: "#9a4d00", fontWeight: 700, marginTop: "4px" }}>
+                      Rp {subtotal.toLocaleString("id-ID")}
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <button
+                      type="button"
+                      onClick={() => updateQty(item.id, -1)}
+                      style={{
+                        width: "28px",
+                        height: "28px",
+                        borderRadius: "8px",
+                        border: "none",
+                        background: "#fca5a5",
+                        color: "#7f1d1d",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                      }}
+                    >
+                      −
+                    </button>
+                    <span style={{ minWidth: "20px", textAlign: "center", fontWeight: 700 }}>{item.qty}</span>
+                    <button
+                      type="button"
+                      onClick={() => updateQty(item.id, 1)}
+                      style={{
+                        width: "28px",
+                        height: "28px",
+                        borderRadius: "8px",
+                        border: "none",
+                        background: "#86efac",
+                        color: "#166534",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
