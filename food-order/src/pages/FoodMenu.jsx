@@ -19,7 +19,6 @@ const FoodMenu = ({ onNavigate }) => {
         { label: "🏠 Home", page: "home" },
         { label: "📋 Menu", page: "menu" },
         { label: `👤 Profil (${user?.username || "User"})`, page: "profile" },
-        { label: "🚪 Logout", page: "logout" },
       ]
     : [
         { label: "🏠 Home", page: "home" },
@@ -29,12 +28,6 @@ const FoodMenu = ({ onNavigate }) => {
       ];
 
   const handleNavAction = (page) => {
-    if (page === "logout") {
-      logout();
-      onNavigate("home");
-      return;
-    }
-
     onNavigate(page);
   };
 
