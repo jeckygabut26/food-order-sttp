@@ -9,6 +9,7 @@ const FoodMenu = ({ onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
   const [sortBy, setSortBy] = useState("nama");
   const [lastOrdered, setLastOrdered] = useState("");
+  const [cartCount, setCartCount] = useState(0);
 
   const navItems = isAuthenticated
     ? [
@@ -50,34 +51,57 @@ const FoodMenu = ({ onNavigate }) => {
       return;
     }
 
-    setLastOrdered(`${food.name} berhasil dipesan.`);
+    setCartCount((prev) => prev + 1);
+    setLastOrdered(`${food.name} ditambahkan ke keranjang.`);
   };
 
   return (
     <AppLayout
       title="Menu Makanan"
-      actions={navItems.map(({ label, page }) => (
-        <button
-          key={label}
-          type="button"
-          onClick={() => handleNavAction(page)}
-          style={{
-            border: "none",
-            background: page === "menu" || page === "logout" ? "#2563eb" : "#e0e7ff",
-            color: page === "menu" || page === "logout" ? "white" : "#1e3a8a",
-            padding: "10px 14px",
-            borderRadius: "10px",
-            cursor: "pointer",
-            fontWeight: "700",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-          }}
-        >
-          <span aria-hidden="true">{label.split(" ")[0]}</span>
-          <span>{label.replace(/^[^\s]+\s/, "")}</span>
-        </button>
-      ))}
+      actions={
+        <>
+          <button
+            type="button"
+            style={{
+              border: "none",
+              background: "#f97316",
+              color: "white",
+              padding: "10px 14px",
+              borderRadius: "10px",
+              cursor: "pointer",
+              fontWeight: "700",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <span aria-hidden="true">🛒</span>
+            <span>Keranjang ({cartCount})</span>
+          </button>
+          {navItems.map(({ label, page }) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => handleNavAction(page)}
+              style={{
+                border: "none",
+                background: page === "menu" || page === "logout" ? "#2563eb" : "#e0e7ff",
+                color: page === "menu" || page === "logout" ? "white" : "#1e3a8a",
+                padding: "10px 14px",
+                borderRadius: "10px",
+                cursor: "pointer",
+                fontWeight: "700",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <span aria-hidden="true">{label.split(" ")[0]}</span>
+              <span>{label.replace(/^[^\s]+\s/, "")}</span>
+            </button>
+          ))}
+        </>
+      }
     >
       <div style={{ textAlign: "center", marginBottom: "30px" }}>
         <p style={{ margin: 0, color: "#f97316", fontWeight: "bold", letterSpacing: "2px" }}>
@@ -280,9 +304,14 @@ const FoodMenu = ({ onNavigate }) => {
                     color: "white",
                     fontWeight: "bold",
                     cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
                   }}
                 >
-                  Pesan Sekarang
+                  <span aria-hidden="true">🛒</span>
+                  <span>Tambah ke Keranjang</span>
                 </button>
               </div>
             </div>
