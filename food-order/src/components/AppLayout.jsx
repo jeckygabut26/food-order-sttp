@@ -1,4 +1,4 @@
-import useTheme from "../hooks/useTheme";
+import useTheme from "./hooks/useTheme";
 
 const AppLayout = ({ title, children, actions }) => {
   const { theme, toggleTheme, isDark } = useTheme();
