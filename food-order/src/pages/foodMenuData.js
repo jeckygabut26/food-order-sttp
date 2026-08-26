@@ -6,6 +6,7 @@ export const foods = [
     desc: "Nasi goreng dengan telur, ayam, dan bumbu khas Asia yang gurih.",
     category: "Makanan Asia",
     color: "#fef3c7",
+    image: new URL("../assets/nasi goreng special.jpg", import.meta.url).href,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const foods = [
     desc: "Daging rendang yang empuk dengan cita rasa pedas dan kaya rempah.",
     category: "Makanan Asia",
     color: "#fde68a",
+    image: new URL("../assets/rendang padang.jpg", import.meta.url).href,
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const foods = [
     desc: "Burger dengan daging lembut, keju, sayuran segar, dan saus spesial.",
     category: "Makanan Amerika",
     color: "#dbeafe",
+    image: new URL("../assets/deluxe-burger.jpg", import.meta.url).href,
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const foods = [
     desc: "Steak ayam dengan saus BBQ dan kentang goreng renyah.",
     category: "Makanan Amerika",
     color: "#e0f2fe",
+    image: new URL("../assets/crispy chicken.jpg", import.meta.url).href,
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const foods = [
     desc: "Kentang goreng renyah dengan saus sambal dan mayones.",
     category: "Makanan Ringan",
     color: "#fef9c3",
+    image: new URL("../assets/kentang goreng.jpg", import.meta.url).href,
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ export const foods = [
     desc: "Pisang goreng dengan taburan keju dan cokelat yang menggoda.",
     category: "Makanan Ringan",
     color: "#f5d0fe",
+    image: new URL("../assets/pisang keju.jpg", import.meta.url).href,
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ export const foods = [
     desc: "Brownis lembut dengan rasa cokelat yang manis dan nikmat.",
     category: "Makanan Penutup",
     color: "#f5d0fe",
+    image: new URL("../assets/brownis coklat.jpg", import.meta.url).href,
   },
   {
     id: 8,
@@ -62,6 +69,7 @@ export const foods = [
     desc: "Cheesecake lembut dengan rasa susu dan manis yang seimbang.",
     category: "Makanan Penutup",
     color: "#d1fae5",
+    image: new URL("../assets/cheesecake.jpg", import.meta.url).href,
   },
   {
     id: 9,
@@ -70,6 +78,7 @@ export const foods = [
     desc: "Roti bakar hangat dengan topping cokelat dan selai kacang.",
     category: "Sarapan Pagi",
     color: "#fcd34d",
+    image: new URL("../assets/roti bakar.jpg", import.meta.url).href,
   },
   {
     id: 10,
@@ -78,6 +87,7 @@ export const foods = [
     desc: "Omelet dengan sayuran segar dan rasa gurih yang cocok untuk sarapan.",
     category: "Sarapan Pagi",
     color: "#dcfce7",
+    image: new URL("../assets/omelet sayur.jpg", import.meta.url).href,
   },
   {
     id: 11,
@@ -86,6 +96,7 @@ export const foods = [
     desc: "Sushi dengan potongan salmon segar dan nasi yang lembut.",
     category: "Makanan Asia",
     color: "#e0f2fe",
+    image: new URL("../assets/sushi salmon.jpg", import.meta.url).href,
   },
   {
     id: 12,
@@ -94,6 +105,7 @@ export const foods = [
     desc: "Waffles renyah dengan topping cokelat dan whipped cream.",
     category: "Sarapan Pagi",
     color: "#fed7aa",
+    image: new URL("../assets/Waffles Cokelat.jpg", import.meta.url).href,
   },
   {
     id: 13,
@@ -102,6 +114,7 @@ export const foods = [
     desc: "Mie ayam dengan bakso, sawi, dan kuah kaldu yang kaya rasa.",
     category: "Makanan Asia",
     color: "#fef3c7",
+    image: new URL("../assets/mie ayam.jpg", import.meta.url).href,
   },
   {
     id: 14,
@@ -110,6 +123,7 @@ export const foods = [
     desc: "Ayam goreng tepung dengan sambal geprek yang pedas dan menggoda.",
     category: "Makanan Asia",
     color: "#fcd34d",
+    image: new URL("../assets/ayam geprek.jpg", import.meta.url).href,
   },
   {
     id: 15,
@@ -118,6 +132,7 @@ export const foods = [
     desc: "Pasta creamy dengan keju parmesan, mushroom, dan bawang putih.",
     category: "Makanan Amerika",
     color: "#d1fae5",
+    image: new URL("../assets/pasta cabonara.jpg", import.meta.url).href,
   },
   {
     id: 16,
@@ -126,6 +141,7 @@ export const foods = [
     desc: "Lasagna dengan saus tomat, daging, dan keju yang lumer.",
     category: "Makanan Amerika",
     color: "#bfdbfe",
+    image: new URL("../assets/lasagna.jpg", import.meta.url).href,
   },
   {
     id: 17,
@@ -134,6 +150,7 @@ export const foods = [
     desc: "Tahu goreng dengan petis, sayuran, dan saus khas Surabaya.",
     category: "Makanan Ringan",
     color: "#fef9c3",
+    image: new URL("../assets/tahu tek.jpg", import.meta.url).href,
   },
   {
     id: 18,
@@ -142,6 +159,7 @@ export const foods = [
     desc: "Sate ayam dengan bumbu kacang yang gurih dan aroma rempah.",
     category: "Makanan Asia",
     color: "#fde68a",
+    image: new URL("../assets/sate ayam.jpg", import.meta.url).href,
   },
   {
     id: 19,
@@ -150,6 +168,7 @@ export const foods = [
     desc: "Taco isi ayam, sayuran segar, dan saus salsa yang nikmat.",
     category: "Makanan Amerika",
     color: "#e0f2fe",
+    image: new URL("../assets/taco chicken.jpg", import.meta.url).href,
   },
   {
     id: 20,
@@ -158,6 +177,7 @@ export const foods = [
     desc: "Donat lembut dengan tekstur kentang yang empuk dan manis.",
     category: "Makanan Penutup",
     color: "#f5d0fe",
+    image: new URL("../assets/donat kentang.jpg", import.meta.url).href,
   },
   {
     id: 21,
@@ -166,6 +186,7 @@ export const foods = [
     desc: "Minuman segar dengan campuran cendol, santan, dan gula merah.",
     category: "Minuman",
     color: "#dbeafe",
+    image: new URL("../assets/es cendol.jpg", import.meta.url).href,
   },
   {
     id: 22,
@@ -174,6 +195,7 @@ export const foods = [
     desc: "Teh dingin yang menyegarkan dengan rasa manis yang pas.",
     category: "Minuman",
     color: "#d1fae5",
+    image: new URL("../assets/teh manis.jpg", import.meta.url).href,
   },
   {
     id: 23,
@@ -182,6 +204,7 @@ export const foods = [
     desc: "Jus alpukat creamy dengan rasa lembut dan kaya nutrisi.",
     category: "Minuman",
     color: "#bbf7d0",
+    image: new URL("../assets/jus alpukat.jpg", import.meta.url).href,
   },
   {
     id: 24,
@@ -190,6 +213,7 @@ export const foods = [
     desc: "Milkshake cokelat dingin dengan tekstur lembut dan creamy.",
     category: "Minuman",
     color: "#fcd34d",
+    image: new URL("../assets/milkshake coklat.jpg", import.meta.url).href,
   },
   {
     id: 25,
@@ -198,6 +222,7 @@ export const foods = [
     desc: "Pisang goreng renyah dengan lapisan tepung yang gurih.",
     category: "Makanan Ringan",
     color: "#fde68a",
+    image: new URL("../assets/pisang goreng crispy.jpg", import.meta.url).href,
   },
   {
     id: 26,
@@ -206,6 +231,7 @@ export const foods = [
     desc: "Mochi lembut dengan rasa matcha yang khas dan menyegarkan.",
     category: "Makanan Penutup",
     color: "#e0f2fe",
+    image: new URL("../assets/mochi matcha.jpg", import.meta.url).href,
   },
 ];
 
