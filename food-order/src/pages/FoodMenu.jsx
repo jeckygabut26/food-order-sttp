@@ -258,13 +258,19 @@ const FoodMenu = ({ onNavigate }) => {
                 style={{
                   background: food.color,
                   height: "120px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "40px",
+                  overflow: "hidden",
                 }}
               >
-                {food.category === "Minuman" ? "🥤" : "🍽️"}
+                <img
+                  src="https://imgs.search.brave.com/98iTq3qc_URbbBr7J2c_wqRCiyixnN8s05oBaQkVZ2U/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjQwNzIz/L3BuZ3RyZWUtdGhh/aS1mb29kLWluc3Rh/bnQtbm9vZGxlcy1p/bWFnZV8xNTkxMTgz/Mi5qcGc"
+                  alt={food.name}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
               </div>
 
               <div style={{ padding: "18px" }}>
