@@ -9,7 +9,9 @@ const FoodMenu = ({ onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
   const [sortBy, setSortBy] = useState("nama");
   const [lastOrdered, setLastOrdered] = useState("");
-  const [cartCount, setCartCount] = useState(0);
+  const [cart, setCart] = useState([]);
+
+  const cartCount = cart.reduce((total, item) => total + item.qty, 0);
 
   const navItems = isAuthenticated
     ? [
@@ -51,8 +53,29 @@ const FoodMenu = ({ onNavigate }) => {
       return;
     }
 
-    setCartCount((prev) => prev + 1);
+    setCart((prevCart) => {
+      const existing = prevCart.find((item) => item.id === food.id);
+
+      if (existing) {
+        return prevCart.map((item) =>
+          item.id === food.id ? { ...item, qty: item.qty + 1 } : item
+        );
+      }
+
+      return [...prevCart, { ...food, qty: 1 }];
+    });
+
     setLastOrdered(`${food.name} ditambahkan ke keranjang.`);
+  };
+
+  const updateQty = (foodId, delta) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === foodId ? { ...item, qty: Math.max(0, item.qty + delta) } : item
+        )
+        .filter((item) => item.qty > 0)
+    );
   };
 
   return (
@@ -221,6 +244,84 @@ const FoodMenu = ({ onNavigate }) => {
           </p>
         )}
       </div>
+
+      {cart.length > 0 && (
+        <div
+          style={{
+            background: "#fff7ed",
+            border: "1px solid #fdba74",
+            borderRadius: "16px",
+            padding: "18px",
+            marginBottom: "22px",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
+            <h3 style={{ margin: 0, color: "#9a4d00" }}>Keranjang Saya</h3>
+            <span style={{ color: "#9a4d00", fontWeight: 700 }}>Total: {cartCount} item</span>
+          </div>
+
+          <div style={{ display: "grid", gap: "12px" }}>
+            {cart.map((item) => (
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "12px",
+                  background: "white",
+                  borderRadius: "12px",
+                  padding: "10px 12px",
+                  border: "1px solid #fed7aa",
+                }}
+              >
+                <div>
+                  <strong style={{ display: "block" }}>{item.name}</strong>
+                  <span style={{ color: "#64748b", fontSize: "14px" }}>
+                    Rp {item.price.toLocaleString("id-ID")}
+                  </span>
+                </div>
+
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <button
+                    type="button"
+                    onClick={() => updateQty(item.id, -1)}
+                    style={{
+                      width: "28px",
+                      height: "28px",
+                      borderRadius: "8px",
+                      border: "none",
+                      background: "#fca5a5",
+                      color: "#7f1d1d",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                    }}
+                  >
+                    −
+                  </button>
+                  <span style={{ minWidth: "20px", textAlign: "center", fontWeight: 700 }}>{item.qty}</span>
+                  <button
+                    type="button"
+                    onClick={() => updateQty(item.id, 1)}
+                    style={{
+                      width: "28px",
+                      height: "28px",
+                      borderRadius: "8px",
+                      border: "none",
+                      background: "#86efac",
+                      color: "#166534",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {filteredFoods.length === 0 ? (
         <div
